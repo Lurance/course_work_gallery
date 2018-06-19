@@ -1,20 +1,18 @@
 {
-  "compileOnSave": true,
   "compilerOptions": {
     "target": "es2017",
     "module": "commonjs",
     "strict": true,
+    "lib": ["es6"],
     "noImplicitAny": false,
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
+    "outDir": "dist",
     "charset": "utf8",
     "allowJs": false,
     "pretty": true,
     "noEmitOnError": false,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
     "allowUnreachableCode": false,
-    "allowUnusedLabels": false,
     "strictPropertyInitialization": false,
     "noFallthroughCasesInSwitch": true,
     "skipLibCheck": true,
@@ -22,9 +20,7 @@
     "inlineSourceMap": true,
     "importHelpers": true
   },
-  "exclude": [
-    "app/public",
-    "app/views",
-    "node_modules*"
+  "include": [
+    "src/**/*"
   ]
 }

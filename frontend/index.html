@@ -370,7 +370,7 @@
             <span class="content-title">登录</span>
 
             <section style="margin-top: 30px">
-                <input placeholder="填写用户名">
+                <input placeholder="邮箱">
                 <input placeholder="填写密码">
             </section>
 
@@ -385,14 +385,13 @@
             <span class="content-title">注册</span>
 
             <section style="margin-top: 15px">
-                <input placeholder="用户名">
-                <input placeholder="密码">
-                <input placeholder="邮箱地址" type="email">
-                <input placeholder="密码" type="password">
-                <input placeholder="确认密码" type="password">
+                <input placeholder="邮箱" type="email" v-model="signupForm.email" required>
+                <input placeholder="昵称" v-model="signupForm.nickname" required>
+                <input placeholder="密码" type="password" v-model="signupForm.password" required>
+                <input placeholder="确认密码" type="password" v-model="signupForm.repassword" required>
             </section>
 
-            <button>登录</button>
+            <button @click="doSignup">注册</button>
         </section>
     </section>
 </div>

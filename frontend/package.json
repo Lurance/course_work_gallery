@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
-    "dev": "parcel index.html"
+    "dev": "parcel index.html",
+    "watch": "parcel watch index.html"
   },
   "dependencies": {
     "animate.css": "^3.6.1",
+    "axios": "^0.18.0",
     "reset-css": "^4.0.1",
     "vue": "^2.5.16"
   },
   "devDependencies": {
+    "@types/axios": "^0.14.0",
     "@types/vue": "^2.0.0",
     "autoprefixer": "^8.6.3",
     "lite-server": "^2.3.0",

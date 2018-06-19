@@ -1,56 +1,60 @@
 {
   "name": "course_work_gallery",
   "version": "1.0.0",
-  "description": "",
-  "private": true,
-  "egg": {
-    "typescript": true
-  },
+  "main": "index.js",
+  "repository": "https://github.com/Lurance/course_work_gallery.git",
+  "author": "Lurance <353650263@qq.com>",
   "scripts": {
-    "start": "egg-scripts start --daemon --title=egg-server-course_work_gallery",
-    "stop": "egg-scripts stop --title=egg-server-course_work_gallery",
-    "dev": "egg-bin dev -r egg-ts-helper/register",
-    "debug": "egg-bin debug -r egg-ts-helper/register",
-    "test-local": "egg-bin test -r egg-ts-helper/register",
-    "test": "npm run lint -- --fix && npm run test-local",
-    "cov": "egg-bin cov -r egg-ts-helper/register",
-    "tsc": "ets && tsc -p tsconfig.json",
-    "ci": "npm run lint && npm run cov && npm run tsc",
-    "autod": "autod",
-    "lint": "tslint --project . -c tslint.json",
-    "clean": "ets clean"
+    "dev": "cross-env NODE_ENV=development nodemon index.ts",
+    "lint": "tslint --project ./tsconfig.json --fix"
   },
+  "license": "MIT",
   "dependencies": {
-    "egg": "^2.6.1",
-    "egg-scripts": "^2.6.0"
+    "add": "^2.0.6",
+    "js-md5": "^0.7.3",
+    "jsonwebtoken": "^8.3.0",
+    "koa": "^2.5.1",
+    "koa-bodyparser": "^4.2.1",
+    "koa-json": "^2.0.2",
+    "koa-jwt": "^3.3.2",
+    "koa-multer": "^1.0.2",
+    "koa-router": "^7.4.0",
+    "koa-static": "^5.0.0",
+    "log4js": "^2.9.0",
+    "mongoose": "^5.1.5",
+    "ms": "^2.1.1",
+    "randomstring": "^1.1.5",
+    "reflect-metadata": "^0.1.12",
+    "routing-controllers": "^0.7.7",
+    "typedi": "^0.7.3",
+    "yarn": "^1.7.0"
   },
   "devDependencies": {
-    "@types/mocha": "^2.2.40",
-    "@types/node": "^7.0.12",
-    "@types/supertest": "^2.0.0",
-    "autod": "^3.0.1",
-    "autod-egg": "^1.1.0",
-    "egg-ci": "^1.8.0",
-    "egg-bin": "^4.6.2",
-    "egg-mock": "^3.16.0",
-    "egg-ts-helper": "^1.4.2",
-    "tslib": "^1.9.0",
-    "tslint": "^4.0.0",
-    "typescript": "^2.8.1"
+    "@types/js-md5": "^0.4.2",
+    "@types/jsonwebtoken": "^7.2.7",
+    "@types/koa": "^2.0.46",
+    "@types/koa-bodyparser": "^4.2.0",
+    "@types/koa-json": "^2.0.18",
+    "@types/koa-multer": "^1.0.0",
+    "@types/koa-router": "^7.0.28",
+    "@types/koa-static": "^4.0.0",
+    "@types/log4js": "^2.3.5",
+    "@types/mongoose": "^5.0.16",
+    "@types/ms": "^0.7.30",
+    "@types/randomstring": "^1.1.6",
+    "cross-env": "^5.2.0",
+    "nodemon": "^1.17.5",
+    "ts-node": "^6.1.1",
+    "tslint": "^5.10.0",
+    "typescript": "^2.9.2"
   },
-  "engines": {
-    "node": ">=8.9.0"
-  },
-  "ci": {
-    "version": "8"
-  },
-  "repository": {
-    "type": "git",
-    "url": ""
-  },
-  "eslintIgnore": [
-    "coverage"
-  ],
-  "author": "",
-  "license": "MIT"
+  "nodemonConfig": {
+    "ignore": [
+      "test/*",
+      "frontend/*"
+    ],
+    "execMap": {
+      "ts": "ts-node"
+    }
+  }
 }
