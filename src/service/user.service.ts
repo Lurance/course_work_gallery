@@ -13,7 +13,7 @@ export class UserService {
         this.userModel = User;
     }
 
-    public async saveUser(email: string, password: string, nickname: string): Promise<IUser | boolean> {
+    public async saveUser(email: string, nickname: string, password: string): Promise<IUser | boolean> {
         if (await this.userModel.count({email}) === 0) {
             return await this.userModel.create({
                 email,

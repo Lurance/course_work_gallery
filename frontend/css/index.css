@@ -11,7 +11,7 @@ header {
     padding: 0 260px;
 }
 
-header .header-links {
+header .header-links{
     color: #ffffff;
 }
 
@@ -23,6 +23,52 @@ header .header-links .header-login {
 header .header-links .header-signup {
     font-size: 22px;
     padding-right: 35px;
+    cursor: pointer;
+}
+
+header .header-user {
+    color: #ffffff;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+header .header-user .header-user-nickname {
+    margin-left: 15px;
+}
+
+header .header-user .header-user-dot-bottom {
+    cursor: pointer;
+    margin-left: 10px;
+    font-size: 0;
+    line-height: 0;
+    border-width: 7px;
+    border-color: #ffffff;
+    border-bottom-width: 0;
+    border-style: dashed;
+    border-top-style: solid;
+    border-left-color: transparent;
+    border-right-color: transparent;
+}
+
+.header-user-dropdown {
+    position: absolute;
+    background: #ffffff;
+    width: 126px;
+    height: 122px;
+    z-index: 1000;
+    border-radius: 20px;
+    right: 260px;
+    top: 70px;
+    color: #757575;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.header-user-dropdown span {
     cursor: pointer;
 }
 

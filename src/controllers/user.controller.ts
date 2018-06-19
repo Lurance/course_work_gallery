@@ -4,6 +4,16 @@ import Environment from "../config/env";
 import {IUser} from "../modes/user.model";
 import {UserService} from "../service/user.service";
 
+export interface authResponse {
+    jwt: {
+        token: string;
+        expiresOn: number;
+    };
+    nickname: string;
+    email: string;
+    avatarUrl: string;
+}
+
 @JsonController()
 export class UserController {
     constructor(private userService: UserService) {
@@ -26,7 +36,7 @@ export class UserController {
 
     @Post("login")
     public async doLogin(@BodyParam("email", {required: true}) email: string,
-                         @BodyParam("password", {required: true}) password: string): Promise<any> {
+                         @BodyParam("password", {required: true}) password: string): Promise<authResponse> {
         const u = await this.userService.getUserFromEmailAndPassword(email, password);
         if (u) {
             const token = this.userService.signUser(u as IUser);

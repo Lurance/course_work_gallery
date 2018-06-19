@@ -6,15 +6,25 @@
     <title>HC Gallery</title>
     <link href="css/index.css" rel="stylesheet">
 </head>
-<body>
+<body class="animated fadeIn">
 <div id="root">
     <header>
         <img src="assets/logo.png">
-        <section class="header-links">
+        <section class="header-links" v-if="!status.isLogin">
             <span class="header-signup" @click="status.doRegister=true;status.doLogin=false">注册</span>
             <span class="header-login" @click="status.doLogin=true;status.doRegister=false">登录</span>
         </section>
+        <section class="header-user" v-if="status.isLogin">
+            <img v-bind:src="userInfo.avatarUrl || '男头像.png'">
+            <span class="header-user-nickname">{{userInfo.nickname}}</span>
+            <span class="header-user-dot-bottom" @click="status.doDropdown = ! status.doDropdown"></span>
+        </section>
     </header>
+
+    <section class="header-user-dropdown" v-if="status.doDropdown">
+        <span>编辑信息</span>
+        <span @click="doLogout">退出登录</span>
+    </section>
 
     <nav>
         <span v-bind:class="{'activate': status.isGallery}" @click="status.isGallery=true">社区画廊</span>
@@ -370,11 +380,11 @@
             <span class="content-title">登录</span>
 
             <section style="margin-top: 30px">
-                <input placeholder="邮箱">
-                <input placeholder="填写密码">
+                <input placeholder="邮箱" v-model="loginForm.email">
+                <input placeholder="填写密码" v-model="loginForm.password" type="password">
             </section>
 
-            <button>登录</button>
+            <button @click="doLogin">登录</button>
         </section>
     </section>
 
@@ -394,6 +404,8 @@
             <button @click="doSignup">注册</button>
         </section>
     </section>
+
+
 </div>
 
 <script src="index.ts"></script>
