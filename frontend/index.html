@@ -22,7 +22,7 @@
     </header>
 
     <section class="header-user-dropdown" v-if="status.doDropdown">
-        <span @click="status.doEdit=true;status.doDropdown=false">编辑信息</span>
+        <span @click="status.doEdit.status=true;status.doDropdown=false">编辑信息</span>
         <span @click="doLogout">退出登录</span>
     </section>
 
@@ -405,9 +405,9 @@
         </section>
     </section>
 
-    <section class="edit animated fadeInDown" >
+    <section class="edit animated fadeInDown" v-if="status.doEdit.status">
         <section class="content">
-            <img src="assets/叉%20.png" class="content-cancel" @click="status.doEdit=false">
+            <img src="assets/叉%20.png" class="content-cancel" @click="status.doEdit.status=false">
             <input type="file" style="display: none" accept="image/jpg,image/jpeg,image/gif,image/png" id="uploadAvatar" @change="changeAvatar" multiple="multiple">
             <img v-bind:src="userInfo.avatarUrl || '编辑信息男头像.png'" class="content-avatar" @click="uploadAvatar" id="avatar">
             <section class="content-nickname">

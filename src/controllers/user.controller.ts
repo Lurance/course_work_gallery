@@ -7,7 +7,7 @@ import {
     ForbiddenError,
     JsonController,
     Post,
-    Put,
+    Put, State,
     UploadedFile,
 } from "routing-controllers";
 import Environment from "../config/env";
@@ -15,7 +15,7 @@ import {IUser} from "../models/user.model";
 import {UserService} from "../service/user.service";
 import {UtilService} from "../service/util.service";
 
-export interface authResponse {
+export interface IAuthResponse {
     jwt: {
         token: string;
         expiresOn: number;
@@ -47,7 +47,7 @@ export class UserController {
 
     @Post("login")
     public async doLogin(@BodyParam("email", {required: true}) email: string,
-                         @BodyParam("password", {required: true}) password: string): Promise<authResponse> {
+                         @BodyParam("password", {required: true}) password: string): Promise<IAuthResponse> {
         const u = await this.userService.getUserFromEmailAndPassword(email, password);
         if (u) {
             const token = this.userService.signUser(u as IUser);
@@ -67,9 +67,26 @@ export class UserController {
 
     @Put("userinfo")
     public async doUpdateUserinfo(@Ctx() ctx: Context, @BodyParam("nickname", {required: true}) nickname: string,
-                                  @BodyParam("email") email: string): Promise<any> {
+                                  @BodyParam("email") email: string,
+                                  @State("user") user: IUser): Promise<Partial<IUser>> {
         const file = ctx.request.files.file;
-        const filename = this.utilService.writeFile(file, "avatar");
-        console.log(filename);
+        const filename = file ? this.utilService.writeFile(file, Environment.AVATARDIR) : null;
+        if (/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(email)) {
+            if (filename) {
+                return await this.userService.userModel.findOneAndUpdate({_id: user._id}, {
+                    avatarUrl: `${Environment.AVATARDIR}/${filename}`,
+                    email,
+                    nickname,
+                }, {new: true}).select("avatarUrl nickname email -_id") as Partial<IUser>;
+            } else {
+                return await this.userService.userModel.findOneAndUpdate({_id: user._id}, {
+                    email,
+                    nickname,
+                }, {new: true}).select("avatarUrl nickname email -_id") as Partial<IUser>;
+            }
+        } else {
+            throw new BadRequestError();
+        }
     }
+
 }

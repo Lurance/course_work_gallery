@@ -10,13 +10,13 @@ export default (async () => {
 
         fs.access(Environment.UPLOADROOT, err => {
             if (err) {
-                fs.mkdirSync(Environment.UPLOADROOT)
+                fs.mkdir(Environment.UPLOADROOT, () => {})
             }
         })
 
         fs.access(path.join(Environment.UPLOADROOT, Environment.AVATARDIR), err => {
             if (err) {
-                fs.mkdirSync(path.join(Environment.UPLOADROOT, Environment.AVATARDIR))
+                fs.mkdir(path.join(Environment.UPLOADROOT, Environment.AVATARDIR), () => {})
             }
         })
 

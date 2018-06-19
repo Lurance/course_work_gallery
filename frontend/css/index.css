@@ -33,6 +33,12 @@ header .header-user {
     align-items: center;
 }
 
+header .header-user img {
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
 header .header-user .header-user-nickname {
     margin-left: 15px;
 }

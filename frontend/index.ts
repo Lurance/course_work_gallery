@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Axios from 'axios'
-import {authResponse} from '../src/controllers/user.controller'
+import {IUser} from '../src/models/user.model'
+import {IAuthResponse} from '../src/controllers/user.controller'
 
 const Fuck = Vue.extend({
     data() {
@@ -23,6 +24,10 @@ const Fuck = Vue.extend({
                 email: '',
                 token: ''
             },
+            authInfo: {
+                token: '',
+                expiresOn: null
+            },
             signupForm: {
                 email: '',
                 password: '',
@@ -41,12 +46,14 @@ const Fuck = Vue.extend({
         }
     },
     created: function () {
-        let authInfo: authResponse | string | null = localStorage.getItem('authInfo')
+        let authInfo: any = localStorage.getItem('authInfo')
+        let userInfo: any = localStorage.getItem('userInfo')
         if (authInfo) {
             authInfo = JSON.parse(authInfo)
-            if ((authInfo as authResponse).jwt.expiresOn > Date.now()) {
-                this.setLoginStatus((authInfo as authResponse).nickname, (authInfo as authResponse).email,
-                    (authInfo as authResponse).avatarUrl, (authInfo as authResponse).jwt.token)
+            userInfo = JSON.parse(userInfo)
+            if (authInfo.expiresOn > Date.now()) {
+                this.setLoginStatus(userInfo.nickname, userInfo.email,
+                    userInfo.avatarUrl, authInfo)
             } else {
                 alert('您的登录状态已过期，请重新登录')
                 this.doLogout()
@@ -61,6 +68,21 @@ const Fuck = Vue.extend({
                 nickname: '',
                 repassword: ''
             }
+        },
+        resetLoginForm() {
+            this.loginForm = {
+                email: '',
+                password: ''
+            }
+        },
+        resetEdit() {
+            this.status.doEdit.status = false
+            this.status.doEdit.editEmail = false
+            this.status.doEdit.editNickname = false
+
+            this.editForm.nickname = ''
+            this.editForm.file = ''
+            this.editForm.email = ''
         },
         async doSignup() {
             if (this.signupForm.password !== this.signupForm.repassword) {
@@ -86,27 +108,30 @@ const Fuck = Vue.extend({
                 alert('邮箱格式错误')
             } else {
                 try {
-                    const res = await Axios.post<authResponse>('/api/login', this.loginForm)
+                    const res = await Axios.post<IAuthResponse>('/api/login', this.loginForm)
                     this.status.doLogin = false
                     alert('登录成功')
-                    this.setLoginStatus(res.data.nickname, res.data.email, res.data.avatarUrl, res.data.jwt.token)
-                    localStorage.setItem('authInfo', JSON.stringify(res.data))
+                    this.setLoginStatus(res.data.nickname, res.data.email, res.data.avatarUrl, res.data.jwt)
+                    localStorage.setItem('authInfo', JSON.stringify(this.authInfo))
+                    localStorage.setItem('userInfo', JSON.stringify(this.userInfo))
                 } catch (e) {
                     alert('用户名或密码错误')
                 }
             }
+            this.resetLoginForm()
         },
         doLogout() {
             this.status.isLogin = false
             this.status.doDropdown = false
             localStorage.clear()
         },
-        setLoginStatus(nickname: string, email: string, avatarUrl: string, token: string) {
+        setLoginStatus(nickname: string, email: string, avatarUrl: string, jwt: {token: string, expiresOn: number}) {
             this.status.isLogin = true
             this.userInfo.nickname = nickname
             this.userInfo.email = email
             this.userInfo.avatarUrl = avatarUrl
-            this.userInfo.token = token
+            this.authInfo.token = jwt.token
+            this.authInfo.expiresOn = jwt.expiresOn
         },
         uploadAvatar() {
             (document.getElementById('uploadAvatar') as HTMLInputElement).click()
@@ -121,19 +146,34 @@ const Fuck = Vue.extend({
         },
         async doUpdateUserInfo() {
             const formData = new FormData()
-            formData.append('nickname', this.editForm.nickname)
-            formData.append('email', this.editForm.email)
-            formData.append('file', this.editForm.file)
+            formData.append('nickname', this.editForm.nickname === '' ? this.userInfo.nickname : this.editForm.nickname)
+            formData.append('email', this.editForm.email === '' ? this.userInfo.email : this.editForm.email)
+            formData.append('file', this.editForm.file === '' ? null : this.editForm.file)
 
-            try {
-                await Axios.put('/api/userinfo', formData, {
-                    headers: {
-                        'Content-Type': 'multipart/form-data',
-                        'Authorization': `Bearer ${this.userInfo.token}`
-                    }
-                })
-            } catch (e) {
-                alert('更新失败草泥马')
+            if (!/^([a-zA-Z0-9_-])+@([a-zA-Z0-9_-])+(.[a-zA-Z0-9_-])+/.test(formData.get('email') as string)) {
+                alert('邮箱格式错误')
+            } else {
+                try {
+                    const res = await Axios.put<Partial<IUser>>('/api/userinfo', formData, {
+                        headers: {
+                            'Content-Type': 'multipart/form-data',
+                            'Authorization': `Bearer ${this.authInfo.token}`
+                        }
+                    })
+                    this.userInfo.nickname = res.data.nickname
+                    this.userInfo.email = res.data.email
+                    this.userInfo.avatarUrl = res.data.avatarUrl
+
+                    localStorage.setItem('userInfo', JSON.stringify(this.userInfo))
+
+                    alert('更新成功')
+
+                    this.resetEdit()
+
+
+                } catch (e) {
+                    alert('更新失败，请重试')
+                }
             }
         }
     }
