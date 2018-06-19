@@ -10,7 +10,12 @@ const Fuck = Vue.extend({
                 isGallery: true,
                 doLogin: false,
                 doRegister: false,
-                doDropdown: false
+                doDropdown: false,
+                doEdit: {
+                    status: false,
+                    editNickname: false,
+                    editEmail: false
+                }
             },
             userInfo: {
                 nickname: '',
@@ -27,6 +32,11 @@ const Fuck = Vue.extend({
             loginForm: {
                 email: '',
                 password: ''
+            },
+            editForm: {
+                file: null,
+                nickname: '',
+                email: ''
             }
         }
     },
@@ -97,6 +107,34 @@ const Fuck = Vue.extend({
             this.userInfo.email = email
             this.userInfo.avatarUrl = avatarUrl
             this.userInfo.token = token
+        },
+        uploadAvatar() {
+            (document.getElementById('uploadAvatar') as HTMLInputElement).click()
+        },
+        changeAvatar(e) {
+            const reader = new FileReader()
+            reader.onload = function(e) {
+                (document.getElementById('avatar') as HTMLImageElement).src = e.target.result
+            }
+            reader.readAsDataURL(e.target.files[0])
+            this.editForm.file = e.target.files[0]
+        },
+        async doUpdateUserInfo() {
+            const formData = new FormData()
+            formData.append('nickname', this.editForm.nickname)
+            formData.append('email', this.editForm.email)
+            formData.append('file', this.editForm.file)
+
+            try {
+                await Axios.put('/api/userinfo', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                        'Authorization': `Bearer ${this.userInfo.token}`
+                    }
+                })
+            } catch (e) {
+                alert('更新失败草泥马')
+            }
         }
     }
 })

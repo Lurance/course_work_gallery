@@ -1,4 +1,5 @@
 import * as Application from "koa";
+import * as koaBody from "koa-body";
 import * as json from "koa-json";
 import * as jwt from "koa-jwt";
 import * as serve from "koa-static";
@@ -22,6 +23,10 @@ const createApp = (): Application => {
         maxAge: Environment.IDENTITY === "production" ? ms("20d") : 0,
     }));
 
+    app.use(serve(__dirname + "/../upload", {
+        maxAge: ms("20d"),
+    }));
+
     app.use(jwt({
         secret: Environment.JWTSECRET,
     }).unless({
@@ -33,6 +38,8 @@ const createApp = (): Application => {
             /\/api\/signup/,
         ],
     }));
+
+    app.use(koaBody({multipart: true}));
 
     useKoaServer(app, {
         routePrefix: "/api/",

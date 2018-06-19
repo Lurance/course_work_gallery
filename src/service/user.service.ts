@@ -3,7 +3,7 @@ import {sign} from "jsonwebtoken";
 import {Model} from "mongoose";
 import {Service} from "typedi";
 import Environment from "../config/env";
-import {IUser, User} from "../modes/user.model";
+import {IUser, User} from "../models/user.model";
 
 @Service()
 export class UserService {

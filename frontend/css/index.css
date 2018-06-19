@@ -181,7 +181,8 @@ nav span:nth-child(2).activate::after {
 }
 
 .login,
-.register {
+.register,
+.edit{
     background: url("../assets/登录边框.png") no-repeat center;
     text-align: center;
     z-index: 999;
@@ -196,7 +197,8 @@ nav span:nth-child(2).activate::after {
 }
 
 .login .content,
-.register .content {
+.register .content,
+.edit .content{
     padding: 50px 50px;
     display: flex;
     flex-direction: column;
@@ -205,7 +207,8 @@ nav span:nth-child(2).activate::after {
 }
 
 .login .content .content-cancel,
-.register .content .content-cancel {
+.register .content .content-cancel,
+.edit .content .content-cancel{
     cursor: pointer;
     height: 16px;
     width: 16px;
@@ -228,7 +231,7 @@ nav span:nth-child(2).activate::after {
 }
 
 .login .content input,
-.register .content input {
+.register .content input{
     width: 100%;
     color: #131415;
     margin-top: 40px;
@@ -243,17 +246,20 @@ nav span:nth-child(2).activate::after {
 }
 
 .login .content input::placeholder,
-.register .content input::placeholder {
+.register .content input::placeholder,
+.edit .content input{
     color: #9c9ea0;
 }
 
 .login .content input:focus,
-.register .content input:focus {
+.register .content input:focus,
+.edit .content input{
     outline: none;
 }
 
 .login .content button,
-.register .content button {
+.register .content button,
+.edit .content button{
     margin-top: 40px;
     width: 100%;
     background: #ffd45a;
@@ -261,4 +267,39 @@ nav span:nth-child(2).activate::after {
     color: #ffffff;
     font-size: 18px;
     border: none;
+}
+
+.edit .content .content-avatar {
+    cursor: pointer;
+    margin-top: 30px;
+    width: 80px;
+    height: 80px;
+}
+
+.edit .content .content-nickname,
+.edit .content .content-email{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    font-size: 20px;
+    color: #131415;
+    margin-top: 40px;
+}
+
+.edit .content .content-nickname img,
+.edit .content .content-email img{
+    cursor: pointer;
+    width: 25px;
+    height: 25px;
+    margin-left: 10px;
+}
+
+
+.edit .content input {
+    border: none;
+    font-size: 20px;
+    border-bottom: #eeeeee 1px solid;
+    padding-bottom: 10px;
+    color: #131415;
 }

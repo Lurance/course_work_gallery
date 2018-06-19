@@ -22,7 +22,7 @@
     </header>
 
     <section class="header-user-dropdown" v-if="status.doDropdown">
-        <span>编辑信息</span>
+        <span @click="status.doEdit=true;status.doDropdown=false">编辑信息</span>
         <span @click="doLogout">退出登录</span>
     </section>
 
@@ -402,6 +402,25 @@
             </section>
 
             <button @click="doSignup">注册</button>
+        </section>
+    </section>
+
+    <section class="edit animated fadeInDown" >
+        <section class="content">
+            <img src="assets/叉%20.png" class="content-cancel" @click="status.doEdit=false">
+            <input type="file" style="display: none" accept="image/jpg,image/jpeg,image/gif,image/png" id="uploadAvatar" @change="changeAvatar" multiple="multiple">
+            <img v-bind:src="userInfo.avatarUrl || '编辑信息男头像.png'" class="content-avatar" @click="uploadAvatar" id="avatar">
+            <section class="content-nickname">
+                <span v-if="!status.doEdit.editNickname">{{userInfo.nickname}}</span>
+                <input v-bind:placeholder="'修改：' + userInfo.nickname" v-model="editForm.nickname" v-if="status.doEdit.editNickname">
+                <img src="assets/编辑.png" @click="status.doEdit.editNickname = !status.doEdit.editNickname">
+            </section>
+            <section class="content-email">
+                <span v-if="!status.doEdit.editEmail">{{userInfo.email}}</span>
+                <input v-bind:placeholder="'修改：' + userInfo.email" v-model="editForm.email" v-if="status.doEdit.editEmail">
+                <img src="assets/编辑.png" @click="status.doEdit.editEmail = !status.doEdit.editEmail">
+            </section>
+            <button @click="doUpdateUserInfo">确认更新</button>
         </section>
     </section>
 

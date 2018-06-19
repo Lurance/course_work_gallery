@@ -1,8 +1,19 @@
+import {Context} from "koa";
 import ms = require("ms");
-import {BadRequestError, BodyParam, ForbiddenError, JsonController, Post} from "routing-controllers";
+import {
+    BadRequestError,
+    Body,
+    BodyParam, Ctx,
+    ForbiddenError,
+    JsonController,
+    Post,
+    Put,
+    UploadedFile,
+} from "routing-controllers";
 import Environment from "../config/env";
-import {IUser} from "../modes/user.model";
+import {IUser} from "../models/user.model";
 import {UserService} from "../service/user.service";
+import {UtilService} from "../service/util.service";
 
 export interface authResponse {
     jwt: {
@@ -16,7 +27,7 @@ export interface authResponse {
 
 @JsonController()
 export class UserController {
-    constructor(private userService: UserService) {
+    constructor(private userService: UserService, private utilService: UtilService) {
     }
 
     @Post("signup")
@@ -52,5 +63,13 @@ export class UserController {
         } else {
             throw new ForbiddenError();
         }
+    }
+
+    @Put("userinfo")
+    public async doUpdateUserinfo(@Ctx() ctx: Context, @BodyParam("nickname", {required: true}) nickname: string,
+                                  @BodyParam("email") email: string): Promise<any> {
+        const file = ctx.request.files.file;
+        const filename = this.utilService.writeFile(file, "avatar");
+        console.log(filename);
     }
 }

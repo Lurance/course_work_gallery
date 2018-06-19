@@ -15,6 +15,7 @@
     "js-md5": "^0.7.3",
     "jsonwebtoken": "^8.3.0",
     "koa": "^2.5.1",
+    "koa-body": "^4.0.3",
     "koa-bodyparser": "^4.2.1",
     "koa-json": "^2.0.2",
     "koa-jwt": "^3.3.2",
