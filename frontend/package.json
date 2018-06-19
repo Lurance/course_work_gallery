@@ -1,0 +1,29 @@
+{
+  "name": "course_work_gallery_frontend",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "dev": "parcel index.html"
+  },
+  "dependencies": {
+    "animate.css": "^3.6.1",
+    "reset-css": "^4.0.1",
+    "vue": "^2.5.16"
+  },
+  "devDependencies": {
+    "@types/vue": "^2.0.0",
+    "autoprefixer": "^8.6.3",
+    "lite-server": "^2.3.0",
+    "parcel-bundler": "^1.9.1",
+    "postcss-modules": "^1.1.0",
+    "typescript": "^2.9.2"
+  },
+  "alias": {
+    "vue": "./node_modules/vue/dist/vue.common.js"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}

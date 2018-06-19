@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>HC Gallery</title>
+    <link href="css/index.css" rel="stylesheet">
+</head>
+<body>
+<div id="root">
+    <header>
+        <img src="assets/logo.png">
+        <section class="header-links">
+            <span class="header-signup" @click="status.doRegister=true;status.doLogin=false">注册</span>
+            <span class="header-login" @click="status.doLogin=true;status.doRegister=false">登录</span>
+        </section>
+    </header>
+
+    <nav>
+        <span v-bind:class="{'activate': status.isGallery}" @click="status.isGallery=true">社区画廊</span>
+        <span v-bind:class="{'activate': !status.isGallery}" @click="status.isGallery=false">我的作品</span>
+    </nav>
+
+    <main class="all animated fadeIn" v-if="status.isGallery">
+        <section class="gallery-ul">
+            <div class="gallery-li">
+                <section class="gallery">
+                    <img src="assets/demoimg/微光1.png" class="gallery-img">
+                    <div class="gallery-li-footer">
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/浏览.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/赞.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                    </div>
+                </section>
+                <div class="gallery-user">
+                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                    <span>Bob David</span>
+                </div>
+            </div>
+            <div class="gallery-li">
+                <section class="gallery">
+                    <img src="assets/demoimg/微光1.png" class="gallery-img">
+                    <div class="gallery-li-footer">
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/浏览.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/赞.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                    </div>
+                </section>
+                <div class="gallery-user">
+                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                    <span>Bob David</span>
+                </div>
+            </div>
+            <div class="gallery-li">
+                <section class="gallery">
+                    <img src="assets/demoimg/微光1.png" class="gallery-img">
+                    <div class="gallery-li-footer">
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/浏览.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/赞.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                    </div>
+                </section>
+                <div class="gallery-user">
+                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                    <span>Bob David</span>
+                </div>
+            </div>
+            <div class="gallery-li">
+                <section class="gallery">
+                    <img src="assets/demoimg/微光1.png" class="gallery-img">
+                    <div class="gallery-li-footer">
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/浏览.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/赞.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                    </div>
+                </section>
+                <div class="gallery-user">
+                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                    <span>Bob David</span>
+                </div>
+            </div>
+            <div class="gallery-li">
+                <section class="gallery">
+                    <img src="assets/demoimg/微光1.png" class="gallery-img">
+                    <div class="gallery-li-footer">
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/浏览.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/赞.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                    </div>
+                </section>
+                <div class="gallery-user">
+                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                    <span>Bob David</span>
+                </div>
+            </div>
+            <div class="gallery-li">
+                <section class="gallery">
+                    <img src="assets/demoimg/微光1.png" class="gallery-img">
+                    <div class="gallery-li-footer">
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/浏览.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/赞.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                    </div>
+                </section>
+                <div class="gallery-user">
+                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                    <span>Bob David</span>
+                </div>
+            </div>
+            <div class="gallery-li">
+                <section class="gallery">
+                    <img src="assets/demoimg/微光1.png" class="gallery-img">
+                    <div class="gallery-li-footer">
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/浏览.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                        <div class="gallery-li-footer-logo">
+                            <img src="assets/赞.png">&nbsp;&nbsp;
+                            <span>1w+</span>
+                        </div>
+                    </div>
+                </section>
+                <div class="gallery-user">
+                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                    <span>Bob David</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <main class="mine animated fadeIn" v-if="!status.isGallery">
+        <section class="gallery-section">
+            <span class="gallery-date">2018-06-13</span>
+            <section class="gallery-ul">
+                <div class="gallery-li">
+                    <section class="gallery">
+                        <img src="assets/demoimg/微光1.png" class="gallery-img">
+                        <div class="gallery-li-footer">
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/浏览.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/赞.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="gallery-user">
+                        <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                        <span>Bob David</span>
+                    </div>
+                </div>
+                <div class="gallery-li">
+                    <section class="gallery">
+                        <img src="assets/demoimg/微光1.png" class="gallery-img">
+                        <div class="gallery-li-footer">
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/浏览.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/赞.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="gallery-user">
+                        <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                        <span>Bob David</span>
+                    </div>
+                </div>
+                <div class="gallery-li">
+                    <section class="gallery">
+                        <img src="assets/demoimg/微光1.png" class="gallery-img">
+                        <div class="gallery-li-footer">
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/浏览.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/赞.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="gallery-user">
+                        <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                        <span>Bob David</span>
+                    </div>
+                </div>
+                <div class="gallery-li">
+                    <section class="gallery">
+                        <img src="assets/demoimg/微光1.png" class="gallery-img">
+                        <div class="gallery-li-footer">
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/浏览.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/赞.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="gallery-user">
+                        <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                        <span>Bob David</span>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <section class="gallery-section">
+            <span class="gallery-date">2018-06-13</span>
+            <section class="gallery-ul">
+                <div class="gallery-li">
+                    <section class="gallery">
+                        <img src="assets/demoimg/微光1.png" class="gallery-img">
+                        <div class="gallery-li-footer">
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/浏览.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/赞.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="gallery-user">
+                        <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                        <span>Bob David</span>
+                    </div>
+                </div>
+                <div class="gallery-li">
+                    <section class="gallery">
+                        <img src="assets/demoimg/微光1.png" class="gallery-img">
+                        <div class="gallery-li-footer">
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/浏览.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/赞.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="gallery-user">
+                        <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                        <span>Bob David</span>
+                    </div>
+                </div>
+                <div class="gallery-li">
+                    <section class="gallery">
+                        <img src="assets/demoimg/微光1.png" class="gallery-img">
+                        <div class="gallery-li-footer">
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/浏览.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/赞.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="gallery-user">
+                        <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                        <span>Bob David</span>
+                    </div>
+                </div>
+                <div class="gallery-li">
+                    <section class="gallery">
+                        <img src="assets/demoimg/微光1.png" class="gallery-img">
+                        <div class="gallery-li-footer">
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/浏览.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/赞.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="gallery-user">
+                        <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                        <span>Bob David</span>
+                    </div>
+                </div>
+                <div class="gallery-li">
+                    <section class="gallery">
+                        <img src="assets/demoimg/微光1.png" class="gallery-img">
+                        <div class="gallery-li-footer">
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/浏览.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/赞.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="gallery-user">
+                        <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                        <span>Bob David</span>
+                    </div>
+                </div>
+                <div class="gallery-li">
+                    <section class="gallery">
+                        <img src="assets/demoimg/微光1.png" class="gallery-img">
+                        <div class="gallery-li-footer">
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/浏览.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                            <div class="gallery-li-footer-logo">
+                                <img src="assets/赞.png">&nbsp;&nbsp;
+                                <span>1w+</span>
+                            </div>
+                        </div>
+                    </section>
+                    <div class="gallery-user">
+                        <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
+                        <span>Bob David</span>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+
+    <section class="login animated fadeInDown" v-if="status.doLogin && !status.doRegister && !status.isLogin">
+        <section class="content">
+            <img src="assets/叉%20.png" class="content-cancel" @click="status.doLogin=false">
+            <span class="content-link" @click="status.doRegister=true;status.doLogin=false">注册</span>
+            <span class="content-title">登录</span>
+
+            <section style="margin-top: 30px">
+                <input placeholder="填写用户名">
+                <input placeholder="填写密码">
+            </section>
+
+            <button>登录</button>
+        </section>
+    </section>
+
+    <section class="register animated fadeInDown" v-if="status.doRegister && !status.doLogin && !status.isLogin">
+        <section class="content">
+            <img src="assets/叉%20.png" class="content-cancel" @click="status.doRegister=false">
+            <span class="content-link" @click="status.doLogin=true;status.doRegister=false">登录</span>
+            <span class="content-title">注册</span>
+
+            <section style="margin-top: 15px">
+                <input placeholder="用户名">
+                <input placeholder="密码">
+                <input placeholder="邮箱地址" type="email">
+                <input placeholder="密码" type="password">
+                <input placeholder="确认密码" type="password">
+            </section>
+
+            <button>登录</button>
+        </section>
+    </section>
+</div>
+
+<script src="index.ts"></script>
+</body>
+</html>
