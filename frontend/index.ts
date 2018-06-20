@@ -70,8 +70,7 @@ const Fuck = Vue.extend({
                 this.doLogout();
             }
         }
-        Axios.get('/api/gallery/all')
-            .then(res => this.allGallery = [...res.data])
+        this.getAllgallery()
         if (this.status.isLogin) {
             this.getMyGallery()
         }
@@ -99,6 +98,10 @@ const Fuck = Vue.extend({
             this.editForm.nickname = "";
             this.editForm.file = "";
             this.editForm.email = "";
+        },
+        getAllgallery() {
+            Axios.get('/api/gallery/all')
+                .then(res => this.allGallery = [...res.data])
         },
         getMyGallery() {
             Axios.get<Partial<IGallery>[]>("/api/gallery/my", {
@@ -249,6 +252,8 @@ const Fuck = Vue.extend({
                 this.baseMyGallery = res.data.concat(this.baseMyGallery)
 
                 this.parseGalleryList(this.baseMyGallery)
+
+                this.getAllgallery()
 
                 alert("上传成功");
                 this.uploadForm = []
