@@ -46,7 +46,14 @@ const Fuck = Vue.extend({
             },
             uploadForm: [],
             baseMyGallery: [],
+            allGallery: [],
             myGallery: [],
+            bigImg: {
+                status: false,
+                style: {
+                    background: `url('') no-repeat center`
+                }
+            }
         };
     },
     created() {
@@ -63,16 +70,11 @@ const Fuck = Vue.extend({
                 this.doLogout();
             }
         }
-
-        Axios.get<Partial<IGallery>[]>("/api/gallery/my", {
-            headers: {
-                Authorization: `Bearer ${this.authInfo.token}`,
-            },
-        })
-            .then((res) => {
-                this.baseMyGallery = [...res.data]
-                this.parseGalleryList(this.baseMyGallery)
-            });
+        Axios.get('/api/gallery/all')
+            .then(res => this.allGallery = [...res.data])
+        if (this.status.isLogin) {
+            this.getMyGallery()
+        }
     },
     methods: {
         resetSignupForm() {
@@ -97,6 +99,17 @@ const Fuck = Vue.extend({
             this.editForm.nickname = "";
             this.editForm.file = "";
             this.editForm.email = "";
+        },
+        getMyGallery() {
+            Axios.get<Partial<IGallery>[]>("/api/gallery/my", {
+                headers: {
+                    Authorization: `Bearer ${this.authInfo.token}`,
+                },
+            })
+                .then((res) => {
+                    this.baseMyGallery = [...res.data]
+                    this.parseGalleryList(this.baseMyGallery)
+                });
         },
         async doSignup() {
             if (this.signupForm.password !== this.signupForm.repassword) {
@@ -132,6 +145,7 @@ const Fuck = Vue.extend({
                     alert("用户名或密码错误");
                 }
             }
+            this.getMyGallery()
             this.resetLoginForm();
         },
         doLogout() {
@@ -268,8 +282,15 @@ const Fuck = Vue.extend({
             })
 
             this.myGallery = newAry
+        },
+        doBigImg(g) {
+            this.bigImg = {
+                status: true,
+                style: {
+                    background: `url(${g.imgUrl}) no-repeat center`
+                }
+            }
         }
-
     },
 });
 

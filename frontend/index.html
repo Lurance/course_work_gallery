@@ -34,149 +34,35 @@
 
     <main class="all animated fadeIn" v-if="status.isGallery">
         <section class="gallery-ul">
-            <div class="gallery-li">
+            <div class="gallery-li" v-for="g in allGallery">
                 <section class="gallery">
-                    <img src="assets/demoimg/微光1.png" class="gallery-img">
+                    <img v-bind:src="g.imgUrl" class="gallery-img">
                     <div class="gallery-li-footer">
                         <div class="gallery-li-footer-logo">
                             <img src="assets/浏览.png">&nbsp;&nbsp;
-                            <span>1w+</span>
+                            <span>{{g.watch}}</span>
                         </div>
                         <div class="gallery-li-footer-logo">
                             <img src="assets/赞.png">&nbsp;&nbsp;
-                            <span>1w+</span>
+                            <span>{{g.like}}</span>
                         </div>
                     </div>
                 </section>
                 <div class="gallery-user">
-                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
-                    <span>Bob David</span>
-                </div>
-            </div>
-            <div class="gallery-li">
-                <section class="gallery">
-                    <img src="assets/demoimg/微光1.png" class="gallery-img">
-                    <div class="gallery-li-footer">
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/浏览.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/赞.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                    </div>
-                </section>
-                <div class="gallery-user">
-                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
-                    <span>Bob David</span>
-                </div>
-            </div>
-            <div class="gallery-li">
-                <section class="gallery">
-                    <img src="assets/demoimg/微光1.png" class="gallery-img">
-                    <div class="gallery-li-footer">
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/浏览.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/赞.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                    </div>
-                </section>
-                <div class="gallery-user">
-                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
-                    <span>Bob David</span>
-                </div>
-            </div>
-            <div class="gallery-li">
-                <section class="gallery">
-                    <img src="assets/demoimg/微光1.png" class="gallery-img">
-                    <div class="gallery-li-footer">
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/浏览.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/赞.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                    </div>
-                </section>
-                <div class="gallery-user">
-                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
-                    <span>Bob David</span>
-                </div>
-            </div>
-            <div class="gallery-li">
-                <section class="gallery">
-                    <img src="assets/demoimg/微光1.png" class="gallery-img">
-                    <div class="gallery-li-footer">
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/浏览.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/赞.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                    </div>
-                </section>
-                <div class="gallery-user">
-                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
-                    <span>Bob David</span>
-                </div>
-            </div>
-            <div class="gallery-li">
-                <section class="gallery">
-                    <img src="assets/demoimg/微光1.png" class="gallery-img">
-                    <div class="gallery-li-footer">
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/浏览.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/赞.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                    </div>
-                </section>
-                <div class="gallery-user">
-                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
-                    <span>Bob David</span>
-                </div>
-            </div>
-            <div class="gallery-li">
-                <section class="gallery">
-                    <img src="assets/demoimg/微光1.png" class="gallery-img">
-                    <div class="gallery-li-footer">
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/浏览.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                        <div class="gallery-li-footer-logo">
-                            <img src="assets/赞.png">&nbsp;&nbsp;
-                            <span>1w+</span>
-                        </div>
-                    </div>
-                </section>
-                <div class="gallery-user">
-                    <img src="assets/女头像.png">&nbsp;&nbsp;&nbsp;
-                    <span>Bob David</span>
+                    <img v-bind:src="g.user.avatarUrl || '男头像.png'">&nbsp;&nbsp;&nbsp;
+                    <span>{{g.user.nickname}}</span>
                 </div>
             </div>
         </section>
     </main>
 
-    <main class="mine animated fadeIn" v-if="!status.isGallery">
+    <main class="mine animated fadeIn" v-if="!status.isGallery && status.isLogin">
         <section class="gallery-section" v-for="gs in myGallery">
             <span class="gallery-date">{{gs.createdAt}}</span>
             <section class="gallery-ul">
                 <div class="gallery-li" v-for="g in gs.gallery">
                     <section class="gallery">
-                        <img v-bind:src="g.imgUrl" class="gallery-img">
+                        <img v-bind:src="g.imgUrl" class="gallery-img" @click="doBigImg(g)">
                         <div class="gallery-li-footer">
                             <div class="gallery-li-footer-logo">
                                 <img src="assets/浏览.png">&nbsp;&nbsp;
@@ -189,14 +75,20 @@
                         </div>
                     </section>
                     <div class="gallery-user">
-                        <img v-bind:src="userInfo.avatarUrl">&nbsp;&nbsp;&nbsp;
+                        <img v-bind:src="userInfo.avatarUrl || '男头像.png'">&nbsp;&nbsp;&nbsp;
                         <span>{{userInfo.nickname}}</span>
                     </div>
                 </div>
             </section>
         </section>
         <section v-if="myGallery.length === 0" class="gallery-helper">
-            <span>您还没有属于自己的画廊，快去上传吧！</span>
+            <span>您还没有属于自己的画廊，快去上传吧</span>
+        </section>
+    </main>
+
+    <main class="mine animated fadeIn" v-if="!status.isGallery && !status.isLogin">
+        <section class="gallery-helper">
+            <span>您还未登录</span>
         </section>
     </main>
 
@@ -268,6 +160,14 @@
             </section>
             <button @click="doUploadGallery">确认上传至画廊</button>
         </section>
+    </section>
+
+    <section class="bigImg animated fadeIn" v-bind:style="bigImg.style" v-if="bigImg.status">
+
+    </section>
+
+    <section class="cover" v-if="bigImg.status" @click="bigImg.status=false">
+
     </section>
 
 </div>

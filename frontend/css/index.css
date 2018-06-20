@@ -11,6 +11,18 @@ header {
     padding: 0 260px;
 }
 
+.cover {
+    width: 100vw;
+    height: 100vh;
+    opacity: 0.4;
+    cursor: pointer;
+    position: fixed;
+    pointer-events: auto;
+    top: 0;
+    left: 0;
+    background: #222222;
+}
+
 header .header-links {
     color: #ffffff;
 }
@@ -169,7 +181,8 @@ nav span:nth-child(2).activate::after {
 
 .mine .gallery-section .gallery-ul .gallery-li .gallery .gallery-img,
 .all .gallery-ul .gallery-li .gallery .gallery-img {
-    max-width: 220px;
+    width: 220px;
+    cursor: pointer;
     height: 170px;
 }
 
@@ -208,7 +221,8 @@ nav span:nth-child(2).activate::after {
 .login,
 .register,
 .edit,
-.upload {
+.upload,
+.bigImg {
     background: url("../assets/登录边框.png") no-repeat center;
     text-align: center;
     z-index: 999;
@@ -220,6 +234,13 @@ nav span:nth-child(2).activate::after {
     bottom: 0;
     left: 0;
     right: 0;
+}
+
+.bigImg {
+    background-size: 440px 340px !important;
+    width: 80vw;
+    height: 100vh;
+    pointer-events: none;
 }
 
 .upload {
