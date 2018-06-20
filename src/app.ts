@@ -34,7 +34,7 @@ const createApp = (): Application => {
         path: [
             /\/api\/login/,
             /\/api\/signup/,
-            /\/api\/gallery\/all/
+            /\/api\/gallery\/all/,
         ],
     }));
 

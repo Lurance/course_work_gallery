@@ -51,9 +51,9 @@ const Fuck = Vue.extend({
             bigImg: {
                 status: false,
                 style: {
-                    background: `url('') no-repeat center`
-                }
-            }
+                    background: `url('') no-repeat center`,
+                },
+            },
         };
     },
     created() {
@@ -70,9 +70,9 @@ const Fuck = Vue.extend({
                 this.doLogout();
             }
         }
-        this.getAllgallery()
+        this.getAllgallery();
         if (this.status.isLogin) {
-            this.getMyGallery()
+            this.getMyGallery();
         }
     },
     methods: {
@@ -100,18 +100,18 @@ const Fuck = Vue.extend({
             this.editForm.email = "";
         },
         getAllgallery() {
-            Axios.get('/api/gallery/all')
-                .then(res => this.allGallery = [...res.data])
+            Axios.get("/api/gallery/all")
+                .then((res) => this.allGallery = [...res.data]);
         },
         getMyGallery() {
-            Axios.get<Partial<IGallery>[]>("/api/gallery/my", {
+            Axios.get<Array<Partial<IGallery>>>("/api/gallery/my", {
                 headers: {
                     Authorization: `Bearer ${this.authInfo.token}`,
                 },
             })
                 .then((res) => {
-                    this.baseMyGallery = [...res.data]
-                    this.parseGalleryList(this.baseMyGallery)
+                    this.baseMyGallery = [...res.data];
+                    this.parseGalleryList(this.baseMyGallery);
                 });
         },
         async doSignup() {
@@ -148,7 +148,7 @@ const Fuck = Vue.extend({
                     alert("用户名或密码错误");
                 }
             }
-            this.getMyGallery()
+            this.getMyGallery();
             this.resetLoginForm();
         },
         doLogout() {
@@ -249,28 +249,28 @@ const Fuck = Vue.extend({
                     },
                 });
 
-                this.baseMyGallery = res.data.concat(this.baseMyGallery)
+                this.baseMyGallery = res.data.concat(this.baseMyGallery);
 
-                this.parseGalleryList(this.baseMyGallery)
+                this.parseGalleryList(this.baseMyGallery);
 
-                this.getAllgallery()
+                this.getAllgallery();
 
                 alert("上传成功");
-                this.uploadForm = []
-                this.status.doUpload = false
+                this.uploadForm = [];
+                this.status.doUpload = false;
 
             } catch (e) {
                 alert("上传失败，请重试");
             }
         },
-        parseGalleryList(gallery: Partial<IGallery>[]) {
-            gallery.map(v => v.createdAt = new Date(v.createdAt).toLocaleDateString().replace(/\//g, '-',))
+        parseGalleryList(gallery: Array<Partial<IGallery>>) {
+            gallery.map((v) => v.createdAt = new Date(v.createdAt).toLocaleDateString().replace(/\//g, "-"));
 
-            const newAry = []
+            const newAry = [];
 
             gallery.forEach((g, i) => {
                 let index = -1;
-                let alreadyExists = newAry.some((newG, j) => {
+                const alreadyExists = newAry.some((newG, j) => {
                     if (g.createdAt === newG.createdAt) {
                         index = j;
                         return true;
@@ -279,23 +279,23 @@ const Fuck = Vue.extend({
                 if (!alreadyExists) {
                     newAry.push({
                         createdAt: g.createdAt,
-                        gallery: [g]
-                    })
+                        gallery: [g],
+                    });
                 } else {
-                    newAry[index].gallery.push(g)
+                    newAry[index].gallery.push(g);
                 }
-            })
+            });
 
-            this.myGallery = newAry
+            this.myGallery = newAry;
         },
         doBigImg(g) {
             this.bigImg = {
                 status: true,
                 style: {
-                    background: `url(${g.imgUrl}) no-repeat center`
-                }
-            }
-        }
+                    background: `url(${g.imgUrl}) no-repeat center`,
+                },
+            };
+        },
     },
 });
 

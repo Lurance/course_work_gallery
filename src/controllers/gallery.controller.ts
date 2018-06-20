@@ -38,10 +38,10 @@ export class GalleryController {
             .select("imgUrl like watch createdAt -_id");
     }
 
-    @Get('gallery/all')
+    @Get("gallery/all")
     public async getAllGallery(): Promise<Array<Partial<IGallery>>> {
         return await this.galleryService.galleryModel.find({})
-            .populate('user')
+            .populate("user")
             .sort("-createdAt")
             .select("imgUrl like watch createdAt user");
     }
