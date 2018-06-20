@@ -8,6 +8,7 @@ import "reflect-metadata";
 import {useContainer, useKoaServer} from "routing-controllers";
 import {Container} from "typedi";
 import Environment from "./config/env";
+import {GalleryController} from "./controllers/gallery.controller";
 import {UserController} from "./controllers/user.controller";
 
 useContainer(Container);
@@ -46,6 +47,7 @@ const createApp = (): Application => {
 
         controllers: [
             UserController,
+            GalleryController,
         ],
 
         classTransformer: false,

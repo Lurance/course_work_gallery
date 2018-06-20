@@ -8,7 +8,6 @@ import {
     JsonController,
     Post,
     Put, State,
-    UploadedFile,
 } from "routing-controllers";
 import Environment from "../config/env";
 import {IUser} from "../models/user.model";

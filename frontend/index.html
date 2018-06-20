@@ -15,6 +15,7 @@
             <span class="header-login" @click="status.doLogin=true;status.doRegister=false">登录</span>
         </section>
         <section class="header-user" v-if="status.isLogin">
+            <img src="assets/上传.png" class="header-user-upload" @click="status.doUpload = true">
             <img v-bind:src="userInfo.avatarUrl || '男头像.png'">
             <span class="header-user-nickname">{{userInfo.nickname}}</span>
             <span class="header-user-dot-bottom" @click="status.doDropdown = ! status.doDropdown"></span>
@@ -424,6 +425,23 @@
         </section>
     </section>
 
+    <section class="upload animated fadeInDown" v-if="status.doUpload">
+        <section class="content">
+            <img src="assets/叉%20.png" class="content-cancel" @click="status.doUpload = false">
+            <span class="content-title">上传作品</span>
+            <span class="upload-desc">添加作品（文件格式限jpg，jpeg和png，大小不得超过1M）</span>
+            <section class="upload-form">
+                <div class="upload-img-box" v-for="u in uploadForm" @click="removeUploadGallery(u)" style="pointer-events: none">
+                    <img v-bind:src="u.src">
+                </div>
+                <div class="upload-img-box uploader" @click="uploadGallery" v-if="uploadForm.length < 8">
+                    <img src="assets/添加.png" class="upload-img">
+                    <input type="file" multiple="multiple" style="display: none" id="uploadGallery" accept="image/jpg,image/jpeg,image/gif,image/png" @change="changeGallery">
+                </div>
+            </section>
+            <button @click="doUploadGallery">确认上传至画廊</button>
+        </section>
+    </section>
 
 </div>
 

@@ -20,6 +20,12 @@ export default (async () => {
             }
         })
 
+        fs.access(path.join(Environment.UPLOADROOT, Environment.GALLERYDIR), err => {
+            if (err) {
+                fs.mkdir(path.join(Environment.UPLOADROOT, Environment.GALLERYDIR), () => {})
+            }
+        })
+
         server.listen(Environment.PORT, Environment.HOST, () => {
             console.log(`Server is listening on http://${Environment.HOST}:${Environment.PORT}, in ${Environment.IDENTITY} mode!`)
         })

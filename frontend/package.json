@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "parcel index.html",
-    "watch": "parcel watch index.html"
+    "watch": "parcel watch index.html",
+    "build": "parcel build index.html"
   },
   "dependencies": {
     "animate.css": "^3.6.1",

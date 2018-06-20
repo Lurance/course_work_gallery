@@ -6,7 +6,7 @@ import Environment from "../config/env";
 
 @Service()
 export class UtilService {
-    public writeFile(file, extDir: string) {
+    public writeFile(file, extDir: string): string {
         const filename = `${Randomstring.generate(20)}.${file.name.split(".")[1]}`;
         const filePath = path.join(path.join(Environment.UPLOADROOT, extDir), filename);
         const reader = fs.createReadStream(file.path);

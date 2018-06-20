@@ -11,7 +11,7 @@ header {
     padding: 0 260px;
 }
 
-header .header-links{
+header .header-links {
     color: #ffffff;
 }
 
@@ -37,6 +37,13 @@ header .header-user img {
     height: 50px;
     width: 50px;
     border-radius: 50%;
+}
+
+header .header-user .header-user-upload {
+    width: 48px;
+    cursor: pointer;
+    height: 48px;
+    margin-right: 38px;
 }
 
 header .header-user .header-user-nickname {
@@ -116,7 +123,7 @@ nav span:nth-child(2).activate::after {
 }
 
 .mine,
-.all{
+.all {
     padding: 0 10%;
     margin: 80px 0;
     color: #838383
@@ -131,7 +138,7 @@ nav span:nth-child(2).activate::after {
 }
 
 .mine .gallery-section .gallery-ul,
-.all .gallery-ul{
+.all .gallery-ul {
     margin-top: 32px;
     display: flex;
     flex-direction: row;
@@ -139,14 +146,14 @@ nav span:nth-child(2).activate::after {
 }
 
 .mine .gallery-section .gallery-ul .gallery-li,
-.all .gallery-ul .gallery-li{
+.all .gallery-ul .gallery-li {
     margin-top: 25px;
     margin-right: 5%;
     flex-basis: 15%;
 }
 
 .mine .gallery-section .gallery-ul .gallery-li .gallery,
-.all .gallery-ul .gallery-li .gallery{
+.all .gallery-ul .gallery-li .gallery {
     border-radius: 10px;
     background: #f4f4f4;
     display: flex;
@@ -156,13 +163,13 @@ nav span:nth-child(2).activate::after {
 }
 
 .mine .gallery-section .gallery-ul .gallery-li .gallery .gallery-img,
-.all .gallery-ul .gallery-li .gallery .gallery-img{
+.all .gallery-ul .gallery-li .gallery .gallery-img {
     max-width: 220px;
     height: 170px;
 }
 
 .mine .gallery-section .gallery-ul .gallery-li .gallery .gallery-li-footer,
-.all .gallery-ul .gallery-li .gallery .gallery-li-footer{
+.all .gallery-ul .gallery-li .gallery .gallery-li-footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -172,14 +179,14 @@ nav span:nth-child(2).activate::after {
 }
 
 .mine .gallery-section .gallery-ul .gallery-li .gallery .gallery-li-footer .gallery-li-footer-logo,
-.all .gallery-ul .gallery-li .gallery .gallery-li-footer .gallery-li-footer-logo{
+.all .gallery-ul .gallery-li .gallery .gallery-li-footer .gallery-li-footer-logo {
     display: flex;
     flex-direction: row;
     align-items: center;
 }
 
 .mine .gallery-section .gallery-ul .gallery-li .gallery-user,
-.all .gallery-ul .gallery-li .gallery-user{
+.all .gallery-ul .gallery-li .gallery-user {
     margin-top: 10px;
     display: flex;
     flex-direction: row;
@@ -188,23 +195,32 @@ nav span:nth-child(2).activate::after {
 
 .login,
 .register,
-.edit{
+.edit,
+.upload {
     background: url("../assets/登录边框.png") no-repeat center;
     text-align: center;
     z-index: 999;
     position: absolute;
     width: 454px;
     height: 552px;
-    margin: auto auto;
+    margin: 0 auto;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
 }
 
+.upload {
+    background: url("../assets/上传边框.png") no-repeat center;
+    background-size: 900px 750px;
+    width: 900px;
+    height: 750px;
+}
+
 .login .content,
 .register .content,
-.edit .content{
+.edit .content,
+.upload .content {
     padding: 50px 50px;
     display: flex;
     flex-direction: column;
@@ -214,7 +230,8 @@ nav span:nth-child(2).activate::after {
 
 .login .content .content-cancel,
 .register .content .content-cancel,
-.edit .content .content-cancel{
+.edit .content .content-cancel,
+.upload .content .content-cancel {
     cursor: pointer;
     height: 16px;
     width: 16px;
@@ -236,8 +253,14 @@ nav span:nth-child(2).activate::after {
     font-size: 20px;
 }
 
+.upload .content .content-title {
+    margin-top: 45px;
+    font-size: 22px;
+    font-weight: 800;
+}
+
 .login .content input,
-.register .content input{
+.register .content input {
     width: 100%;
     color: #131415;
     margin-top: 40px;
@@ -253,19 +276,20 @@ nav span:nth-child(2).activate::after {
 
 .login .content input::placeholder,
 .register .content input::placeholder,
-.edit .content input{
+.edit .content input {
     color: #9c9ea0;
 }
 
 .login .content input:focus,
 .register .content input:focus,
-.edit .content input{
+.edit .content input {
     outline: none;
 }
 
 .login .content button,
 .register .content button,
-.edit .content button{
+.edit .content button,
+.upload .content button {
     margin-top: 40px;
     width: 100%;
     background: #ffd45a;
@@ -278,12 +302,17 @@ nav span:nth-child(2).activate::after {
 .edit .content .content-avatar {
     cursor: pointer;
     margin-top: 30px;
+    border-radius: 50%;
     width: 80px;
     height: 80px;
 }
 
+.edit .content .content-avatar:hover {
+    opacity: 0.5
+}
+
 .edit .content .content-nickname,
-.edit .content .content-email{
+.edit .content .content-email {
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -294,13 +323,12 @@ nav span:nth-child(2).activate::after {
 }
 
 .edit .content .content-nickname img,
-.edit .content .content-email img{
+.edit .content .content-email img {
     cursor: pointer;
     width: 25px;
     height: 25px;
     margin-left: 10px;
 }
-
 
 .edit .content input {
     border: none;
@@ -308,4 +336,59 @@ nav span:nth-child(2).activate::after {
     border-bottom: #eeeeee 1px solid;
     padding-bottom: 10px;
     color: #131415;
+}
+
+.upload .content .upload-desc {
+    margin-top: 45px;
+    font-size: 20px;
+    color: #727476;
+    align-self: flex-start;
+}
+
+.upload .content .upload-form {
+    width: 100%;
+    margin-top: 45px;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.upload .content .upload-form .upload-img-box {
+    width: 20%;
+    margin: 0 2.5% 35px 2.5%;
+    height: 140px;
+    position: relative;
+}
+
+.upload .content .upload-form .upload-img-box img {
+    width: 100%;
+    height: 140px;
+}
+
+.upload .content .upload-form .upload-img-box::after {
+    content: '';
+    background: url("../assets/删除叉.png") no-repeat center;
+    cursor: pointer;
+    background-size: 20px 20px;
+    width: 20px;
+    height: 20px;
+    position: absolute;
+    pointer-events: auto;
+    padding-right: 20px;
+    right: -15px;
+    top: -25px;
+}
+
+.upload .content .upload-form .upload-img-box:last-child {
+    cursor: pointer;
+}
+
+.upload .content .upload-form .uploader::after {
+    content: none;
+}
+
+.upload .content button {
+    width: 80%;
 }
