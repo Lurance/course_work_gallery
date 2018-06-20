@@ -11,7 +11,6 @@
   "license": "MIT",
   "dependencies": {
     "add": "^2.0.6",
-    "bluebird": "^3.5.1",
     "js-md5": "^0.7.3",
     "jsonwebtoken": "^8.3.0",
     "koa": "^2.5.1",
@@ -32,7 +31,6 @@
     "yarn": "^1.7.0"
   },
   "devDependencies": {
-    "@types/bluebird": "^3.5.20",
     "@types/js-md5": "^0.4.2",
     "@types/jsonwebtoken": "^7.2.7",
     "@types/koa": "^2.0.46",

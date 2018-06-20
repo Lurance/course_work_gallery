@@ -31,9 +31,6 @@ const createApp = (): Application => {
     app.use(jwt({
         secret: Environment.JWTSECRET,
     }).unless({
-        method: [
-            "GET",
-        ],
         path: [
             /\/api\/login/,
             /\/api\/signup/,

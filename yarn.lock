@@ -8,10 +8,6 @@
   dependencies:
     "@types/node" "*"
 
-"@types/bluebird@^3.5.20":
-  version "3.5.20"
-  resolved "http://registry.npm.taobao.org/@types/bluebird/download/@types/bluebird-3.5.20.tgz#f6363172add6f4eabb8cada53ca9af2781e8d6a1"
-
 "@types/body-parser@*":
   version "1.17.0"
   resolved "http://registry.npm.taobao.org/@types/body-parser/download/@types/body-parser-1.17.0.tgz#9f5c9d9bd04bb54be32d5eb9fc0d8c974e6cf58c"
@@ -150,8 +146,8 @@
     "@types/node" "*"
 
 "@types/mongoose@^5.0.16":
-  version "5.0.16"
-  resolved "http://registry.npm.taobao.org/@types/mongoose/download/@types/mongoose-5.0.16.tgz#1ac781533740f107e6c20cd8b1867aace8a4c25a"
+  version "5.0.17"
+  resolved "http://registry.npm.taobao.org/@types/mongoose/download/@types/mongoose-5.0.17.tgz#8ce7804e88272562f30793eb7f179f3027214c56"
   dependencies:
     "@types/events" "*"
     "@types/mongodb" "*"
@@ -410,7 +406,7 @@ bluebird@3.5.0:
   version "3.5.0"
   resolved "http://registry.npm.taobao.org/bluebird/download/bluebird-3.5.0.tgz#791420d7f551eea2897453a8a77653f96606d67c"
 
-bluebird@^3.4.6, bluebird@^3.5.1:
+bluebird@^3.4.6:
   version "3.5.1"
   resolved "http://registry.npm.taobao.org/bluebird/download/bluebird-3.5.1.tgz#d9551f9de98f1fcda1e683d17ee91a0602ee2eb9"
 
@@ -2066,32 +2062,32 @@ mkdirp@^0.5.0, mkdirp@^0.5.1:
   dependencies:
     minimist "0.0.8"
 
-mongodb-core@3.0.8:
-  version "3.0.8"
-  resolved "http://registry.npm.taobao.org/mongodb-core/download/mongodb-core-3.0.8.tgz#8d401f4eab6056c0d874a3d5844a4844f761d4d7"
+mongodb-core@3.0.9:
+  version "3.0.9"
+  resolved "http://registry.npm.taobao.org/mongodb-core/download/mongodb-core-3.0.9.tgz#8327410c88811013fb3e4ac7c4c670f324349be1"
   dependencies:
     bson "~1.0.4"
     require_optional "^1.0.1"
 
-mongodb@3.0.9:
-  version "3.0.9"
-  resolved "http://registry.npm.taobao.org/mongodb/download/mongodb-3.0.9.tgz#742e685e45ac9c3ead02a91c9ebaae7165bb2def"
+mongodb@3.0.10:
+  version "3.0.10"
+  resolved "http://registry.npm.taobao.org/mongodb/download/mongodb-3.0.10.tgz#f948cb9595adcbfcad7444f6b24a040b653b23e8"
   dependencies:
-    mongodb-core "3.0.8"
+    mongodb-core "3.0.9"
 
 mongoose-legacy-pluralize@1.0.2:
   version "1.0.2"
   resolved "http://registry.npm.taobao.org/mongoose-legacy-pluralize/download/mongoose-legacy-pluralize-1.0.2.tgz#3ba9f91fa507b5186d399fb40854bff18fb563e4"
 
 mongoose@^5.1.5:
-  version "5.1.5"
-  resolved "http://registry.npm.taobao.org/mongoose/download/mongoose-5.1.5.tgz#0d0b4dc658deeb7ad9794af7453442ecf7fc7cb0"
+  version "5.1.6"
+  resolved "http://registry.npm.taobao.org/mongoose/download/mongoose-5.1.6.tgz#af92762c1e0317c897435594e83d6a5952873a0e"
   dependencies:
     async "2.6.1"
     bson "~1.0.5"
     kareem "2.2.1"
     lodash.get "4.4.2"
-    mongodb "3.0.9"
+    mongodb "3.0.10"
     mongoose-legacy-pluralize "1.0.2"
     mpath "0.4.1"
     mquery "3.0.0"

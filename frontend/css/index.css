@@ -72,7 +72,7 @@ header .header-user .header-user-dot-bottom {
     z-index: 1000;
     border-radius: 20px;
     right: 260px;
-    top: 70px;
+    top: 85px;
     color: #757575;
     font-size: 18px;
     display: flex;
@@ -133,6 +133,11 @@ nav span:nth-child(2).activate::after {
     margin-top: 80px;
 }
 
+.mine .gallery-helper {
+    text-align: center;
+    font-size: 25px;
+}
+
 .mine .gallery-section .gallery-date {
     font-size: 24px;
 }
@@ -191,6 +196,13 @@ nav span:nth-child(2).activate::after {
     display: flex;
     flex-direction: row;
     align-items: center;
+}
+
+.mine .gallery-section .gallery-ul .gallery-li .gallery-user img,
+.all .gallery-ul .gallery-li .gallery-user img {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
 }
 
 .login,

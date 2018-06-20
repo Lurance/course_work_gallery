@@ -44,11 +44,9 @@ const Fuck = Vue.extend({
                 nickname: "",
                 email: "",
             },
-            uploadForm: [
-            ],
-            myGallery: [
-
-            ],
+            uploadForm: [],
+            baseMyGallery: [],
+            myGallery: [],
         };
     },
     created() {
@@ -65,6 +63,16 @@ const Fuck = Vue.extend({
                 this.doLogout();
             }
         }
+
+        Axios.get<Partial<IGallery>[]>("/api/gallery/my", {
+            headers: {
+                Authorization: `Bearer ${this.authInfo.token}`,
+            },
+        })
+            .then((res) => {
+                this.baseMyGallery = [...res.data]
+                this.parseGalleryList(this.baseMyGallery)
+            });
     },
     methods: {
         resetSignupForm() {
@@ -131,7 +139,7 @@ const Fuck = Vue.extend({
             this.status.doDropdown = false;
             localStorage.clear();
         },
-        setLoginStatus(nickname: string, email: string, avatarUrl: string, jwt: {token: string, expiresOn: number}) {
+        setLoginStatus(nickname: string, email: string, avatarUrl: string, jwt: { token: string, expiresOn: number }) {
             this.status.isLogin = true;
             this.userInfo.nickname = nickname;
             this.userInfo.email = email;
@@ -212,7 +220,7 @@ const Fuck = Vue.extend({
         },
         async doUploadGallery() {
             const formData = new FormData();
-            this.uploadForm.forEach( (f, index) => {
+            this.uploadForm.forEach((f, index) => {
                 formData.append(`file${index}`, f.file);
             });
 
@@ -224,12 +232,44 @@ const Fuck = Vue.extend({
                     },
                 });
 
+                this.baseMyGallery = res.data.concat(this.baseMyGallery)
+
+                this.parseGalleryList(this.baseMyGallery)
+
                 alert("上传成功");
+                this.uploadForm = []
+                this.status.doUpload = false
 
             } catch (e) {
                 alert("上传失败，请重试");
             }
         },
+        parseGalleryList(gallery: Partial<IGallery>[]) {
+            gallery.map(v => v.createdAt = new Date(v.createdAt).toLocaleDateString().replace(/\//g, '-',))
+
+            const newAry = []
+
+            gallery.forEach((g, i) => {
+                let index = -1;
+                let alreadyExists = newAry.some((newG, j) => {
+                    if (g.createdAt === newG.createdAt) {
+                        index = j;
+                        return true;
+                    }
+                });
+                if (!alreadyExists) {
+                    newAry.push({
+                        createdAt: g.createdAt,
+                        gallery: [g]
+                    })
+                } else {
+                    newAry[index].gallery.push(g)
+                }
+            })
+
+            this.myGallery = newAry
+        }
+
     },
 });
 

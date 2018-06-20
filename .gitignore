@@ -5,3 +5,5 @@ node_modules
 src/config/env
 
 upload/avatar
+
+upload/gallery

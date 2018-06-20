@@ -7,7 +7,7 @@ export interface IGallery extends Document {
     imgUrl: string;
     watch: number;
     like: number;
-    createdAt: Date;
+    createdAt: Date | string;
     updatedAt: Date;
 }
 
