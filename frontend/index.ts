@@ -53,6 +53,8 @@ const Fuck = Vue.extend({
                 style: {
                     background: `url('') no-repeat center`,
                 },
+                watchLock: [],
+                likeLock: []
             },
         };
     },
@@ -288,14 +290,32 @@ const Fuck = Vue.extend({
 
             this.myGallery = newAry;
         },
-        doBigImg(g) {
-            this.bigImg = {
-                status: true,
-                style: {
-                    background: `url(${g.imgUrl}) no-repeat center`,
-                },
-            };
+        doBigImg(g: IGallery, watch: boolean, index) {
+            this.bigImg.status = true
+            this.bigImg.style = {
+                background: `url(${g.imgUrl}) no-repeat center`,
+            }
+            if (watch && this.status.isLogin && this.bigImg.watchLock.findIndex(v => v === g._id) === -1) {
+                this.allGallery[index].watch = this.allGallery[index].watch + 1
+                this.bigImg.watchLock.push(g._id)
+                Axios.get(`/api/gallery/${g._id}/watch`, {
+                    headers: {
+                        "Authorization": `Bearer ${this.authInfo.token}`,
+                    },
+                })
+            }
         },
+        doLike(g: IGallery, index) {
+            if (this.bigImg.likeLock.findIndex(v => v === g._id) === -1) {
+                this.allGallery[index].like = this.allGallery[index].like + 1
+                this.bigImg.likeLock.push(g._id)
+                Axios.get(`/api/gallery/${g._id}/like`, {
+                    headers: {
+                        "Authorization": `Bearer ${this.authInfo.token}`,
+                    },
+                })
+            }
+        }
     },
 });
 

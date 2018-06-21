@@ -1,5 +1,5 @@
 import {Context} from "koa";
-import {Ctx, Get, JsonController, Post, State} from "routing-controllers";
+import {Ctx, Get, JsonController, OnUndefined, Param, Post, State} from 'routing-controllers';
 import Environment from "../config/env";
 import {IGallery} from "../models/gallery.model";
 import {IUser} from "../models/user.model";
@@ -44,6 +44,18 @@ export class GalleryController {
             .populate("user")
             .sort("-createdAt")
             .select("imgUrl like watch createdAt user");
+    }
+
+    @Get('gallery/:id/watch')
+    @OnUndefined(204)
+    public async doWatch(@Param('id') id: string): Promise<void> {
+        await this.galleryService.galleryModel.update({_id: id}, {$inc: {watch: 1}})
+    }
+
+    @Get('gallery/:id/like')
+    @OnUndefined(204)
+    public async doLike(@Param('id') id: string): Promise<void> {
+        await this.galleryService.galleryModel.update({_id: id}, {$inc: {like: 1}})
     }
 
 }

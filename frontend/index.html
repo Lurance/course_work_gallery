@@ -34,15 +34,15 @@
 
     <main class="all animated fadeIn" v-if="status.isGallery">
         <section class="gallery-ul">
-            <div class="gallery-li" v-for="g in allGallery">
+            <div class="gallery-li" v-for="g, i in allGallery">
                 <section class="gallery">
-                    <img v-bind:src="g.imgUrl" class="gallery-img">
+                    <img v-bind:src="g.imgUrl" class="gallery-img" @click="doBigImg(g, true, i)">
                     <div class="gallery-li-footer">
                         <div class="gallery-li-footer-logo">
                             <img src="assets/浏览.png">&nbsp;&nbsp;
                             <span>{{g.watch}}</span>
                         </div>
-                        <div class="gallery-li-footer-logo">
+                        <div class="gallery-li-footer-logo" @click="doLike(g, i)">
                             <img src="assets/赞.png">&nbsp;&nbsp;
                             <span>{{g.like}}</span>
                         </div>

@@ -203,6 +203,10 @@ nav span:nth-child(2).activate::after {
     align-items: center;
 }
 
+.all .gallery-ul .gallery-li .gallery .gallery-li-footer .gallery-li-footer-logo:last-child {
+    cursor: pointer;
+}
+
 .mine .gallery-section .gallery-ul .gallery-li .gallery-user,
 .all .gallery-ul .gallery-li .gallery-user {
     margin-top: 10px;
@@ -238,6 +242,7 @@ nav span:nth-child(2).activate::after {
 
 .bigImg {
     background-size: 440px 340px !important;
+    position: fixed;
     width: 80vw;
     height: 100vh;
     pointer-events: none;
