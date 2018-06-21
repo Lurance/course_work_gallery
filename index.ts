@@ -4,7 +4,7 @@ import * as path from "path"
 import * as fs from "fs"
 
 
-export default (async () => {
+export default (async (port, host) => {
     try {
         const server = createApp()
 
@@ -26,11 +26,11 @@ export default (async () => {
             }
         })
 
-        server.listen(Environment.PORT, Environment.HOST, () => {
+        server.listen(port, host, () => {
             console.log(`Server is listening on http://${Environment.HOST}:${Environment.PORT}, in ${Environment.IDENTITY} mode!`)
         })
     } catch (e) {
         console.log(e)
         process.exit(1)
     }
-})()
+})(Environment.PORT, Environment.HOST)
