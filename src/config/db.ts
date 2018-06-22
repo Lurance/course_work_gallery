@@ -8,7 +8,7 @@ switch (Environment.IDENTITY) {
             .catch((err) => console.log(err));
         break;
     case "production":
-        mongoose.connect(`mongodb://${Environment.DBHOST}:${Environment.DBHOST}/${Environment.DBNAME}`)
+        mongoose.connect(`mongodb://${Environment.DBHOST}:${Environment.DBPORT}/${Environment.DBNAME}`)
             .then()
             .catch((err) => console.log(err));
         break;

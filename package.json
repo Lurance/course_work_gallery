@@ -6,7 +6,8 @@
   "author": "Lurance <353650263@qq.com>",
   "scripts": {
     "dev": "cross-env NODE_ENV=development nodemon index.ts",
-    "lint": "tslint --project ./tsconfig.json --fix&tslint --project ./frontend/tsconfig.json --fix"
+    "lint": "tslint --project ./tsconfig.json --fix&tslint --project ./frontend/tsconfig.json --fix",
+    "start": "cross-env NODE_ENV=production nodemon index.ts"
   },
   "license": "MIT",
   "dependencies": {
